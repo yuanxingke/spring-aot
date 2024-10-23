@@ -1,13 +1,13 @@
 package bootiful.demo.controller;
 
+import bootiful.demo.model.CityAddDTO;
 import bootiful.demo.model.CityQueryDTO;
 import bootiful.demo.model.CityVO;
 import bootiful.demo.service.CityService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 /**
  * @author chenyaolin 2024/10/17 14:45
@@ -23,7 +23,7 @@ public class TestController {
     }
 
     @PostMapping("/addCity")
-    public Mono<Integer> addCity(@RequestBody CityQueryDTO dto) {
+    public Mono<Integer> addCity(@RequestBody CityAddDTO dto) {
         return Mono.just(cityService.insert(dto));
     }
 
@@ -33,8 +33,8 @@ public class TestController {
     }
 
     @GetMapping("/getAllCity")
-    public Mono<List<CityVO>> getAllCity() {
-        return Mono.just(cityService.getAllCity());
+    public Mono<PageInfo<CityVO>> getAllCity(CityQueryDTO dto) {
+        return Mono.just(cityService.getAllCity(dto));
     }
 
 //    @GetMapping("/test")

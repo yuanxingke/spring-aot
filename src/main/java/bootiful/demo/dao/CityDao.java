@@ -1,6 +1,7 @@
 package bootiful.demo.dao;
 
 import bootiful.demo.entity.City;
+import bootiful.demo.model.CityQueryDTO;
 import bootiful.demo.model.CityVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,7 +17,7 @@ public interface CityDao {
 
     void insert(City city) ;
 
-    List<CityVO> findAll();
+    List<CityVO> findAll(CityQueryDTO dto);
 
     City findById(@Param("id") Integer id);
 

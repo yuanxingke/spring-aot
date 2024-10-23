@@ -1,7 +1,7 @@
 package bootiful.demo.converter;
 
 import bootiful.demo.entity.City;
-import bootiful.demo.model.CityQueryDTO;
+import bootiful.demo.model.CityAddDTO;
 import bootiful.demo.model.CityVO;
 import org.mapstruct.Mapper;
 
@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface CityConverter {
 
-    City toCity(CityQueryDTO cityQueryDTO);
+    City toCity(CityAddDTO cityAddDTO);
 
     CityVO toCityVO(City city);
 }

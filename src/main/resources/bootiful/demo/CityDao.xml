@@ -11,6 +11,11 @@
     <select id="findAll" resultType="bootiful.demo.model.CityVO">
         SELECT id, name, state, country
         FROM city
+        <where>
+            <if test="name != null">
+                and name like concat('%',#{name},'%')
+            </if>
+        </where>
         ORDER BY id desc
     </select>
     <select id="findById" resultType="bootiful.demo.entity.City">

@@ -5,15 +5,17 @@ import lombok.*;
 import java.io.Serializable;
 
 /**
- * @author chenyaolin 2024/10/23 14:29
+ * @author chenyaolin 2024/10/22 16:55
  **/
+
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityQueryDTO extends PageDTO implements Serializable {
+public class CityAddDTO implements Serializable {
 
+    Integer id;
 
     String name;
 
