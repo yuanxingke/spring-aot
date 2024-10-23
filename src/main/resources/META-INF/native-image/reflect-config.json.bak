@@ -1,0 +1,47 @@
+[
+  {
+    "name": "com.github.pagehelper.PageHelper",
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredClasses": true
+  },
+  {
+    "name":"com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[{"name":"<init>","parameterTypes":["java.util.List","com.github.pagehelper.autoconfigure.PageHelperStandardProperties"] }, {"name":"afterPropertiesSet","parameterTypes":[] }, {"name":"setBeanFactory","parameterTypes":["org.springframework.beans.factory.BeanFactory"] }]
+  },
+  {
+    "name":"com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration$$SpringCGLIB$$0",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "fields":[{"name":"CGLIB$FACTORY_DATA"}],
+    "methods":[{"name":"<init>","parameterTypes":["java.util.List","com.github.pagehelper.autoconfigure.PageHelperStandardProperties"] }, {"name":"CGLIB$SET_STATIC_CALLBACKS","parameterTypes":["org.springframework.cglib.proxy.Callback[]"] }, {"name":"CGLIB$SET_THREAD_CALLBACKS","parameterTypes":["org.springframework.cglib.proxy.Callback[]"] }]
+  },
+  {
+    "name":"com.github.pagehelper.autoconfigure.PageHelperProperties",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"com.github.pagehelper.autoconfigure.PageHelperStandardProperties",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[{"name":"<init>","parameterTypes":["com.github.pagehelper.autoconfigure.PageHelperProperties"] }, {"name":"setHelperDialect","parameterTypes":["java.lang.String"] }, {"name":"setParams","parameterTypes":["java.lang.String"] }, {"name":"setReasonable","parameterTypes":["java.lang.Boolean"] }, {"name":"setSupportMethodsArguments","parameterTypes":["java.lang.Boolean"] }]
+  },
+  {
+    "name":"com.github.pagehelper.dialect.helper.MySqlDialect",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"com.github.pagehelper.util.MetaObjectWithReflectCache",
+    "methods":[{"name":"forObject","parameterTypes":["java.lang.Object"] }]
+  }
+]

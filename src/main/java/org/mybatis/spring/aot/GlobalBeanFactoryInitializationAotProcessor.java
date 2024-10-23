@@ -1,5 +1,9 @@
 package org.mybatis.spring.aot;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.dialect.helper.MySqlDialect;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.builder.CacheRefResolver;
 import org.apache.ibatis.builder.ResultMapResolver;
@@ -32,6 +36,7 @@ import org.apache.ibatis.parsing.XNode;
 import org.apache.ibatis.scripting.defaults.RawLanguageDriver;
 import org.apache.ibatis.scripting.xmltags.XMLLanguageDriver;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.slf4j.SLF4JLogger;
@@ -155,6 +160,13 @@ class GlobalBeanFactoryInitializationAotProcessor implements BeanFactoryInitiali
 				Options.class, Options.FlushCachePolicy.class, Many.class, Mapper.class, One.class, Property.class,
 				Result.class, Results.class);
 
+		var pageHelpers = Set.of(PageHelper.class, PageInfo.class, RowBounds.class, Page.class,
+				org.apache.ibatis.executor.Executor.class, org.apache.ibatis.executor.BaseExecutor.class,
+				org.apache.ibatis.executor.BatchExecutor.class, org.apache.ibatis.executor.ReuseExecutor.class,
+				org.apache.ibatis.session.Configuration.class, org.apache.ibatis.type.TypeHandlerRegistry.class,
+				org.apache.ibatis.mapping.BoundSql.class, org.apache.ibatis.mapping.Environment.class,
+				org.apache.ibatis.transaction.Transaction.class, org.apache.ibatis.transaction.TransactionFactory.class,
+				org.apache.ibatis.transaction.managed.ManagedTransaction.class, org.apache.ibatis.transaction.managed.ManagedTransactionFactory.class, MySqlDialect.class);
 		var memberCategories = MemberCategory.values();
 
 		var classesForReflection = new HashSet<Class<?>>();
@@ -163,6 +175,7 @@ class GlobalBeanFactoryInitializationAotProcessor implements BeanFactoryInitiali
 		classesForReflection.addAll(annotations);
 		classesForReflection.addAll(loggers);
 		classesForReflection.addAll(collections);
+		classesForReflection.addAll(pageHelpers);
 		classesForReflection.addAll(Set.of(Serializable.class, SpringBootVFS.class, PerpetualCache.class, Cursor.class,
 				Optional.class, LruCache.class, MethodHandles.class, Date.class, HashMap.class, CacheRefResolver.class,
 				XNode.class, ResultFlag.class, ResultMapResolver.class, MapperScannerConfigurer.class,
@@ -183,6 +196,9 @@ class GlobalBeanFactoryInitializationAotProcessor implements BeanFactoryInitiali
 					log.debug("the type " + c.getName() + " is serializable");
 			}
 		}
+		//pageHelper
+		hints.proxies().registerJdkProxy(org.apache.ibatis.executor.Executor.class);
+
 	}
 
 	@Override
