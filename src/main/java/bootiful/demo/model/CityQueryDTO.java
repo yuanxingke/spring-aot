@@ -9,7 +9,7 @@ import java.io.Serializable;
  **/
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class CityQueryDTO extends PageDTO implements Serializable {

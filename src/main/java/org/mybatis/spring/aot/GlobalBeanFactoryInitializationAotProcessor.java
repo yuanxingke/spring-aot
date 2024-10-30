@@ -137,8 +137,10 @@ class GlobalBeanFactoryInitializationAotProcessor implements BeanFactoryInitiali
 		resources.addAll(config);
 
 		AotUtils.debug("resources", resources);
-		for (var r : resources)
+		for (var r : resources) {
 			hints.resources().registerResource(r);
+		}
+//		hints.resources().registerResource(new ClassPathResource("nacos-version.txt"));
 	}
 
 	private void registerGlobalTypeHints(RuntimeHints hints) {
@@ -176,6 +178,9 @@ class GlobalBeanFactoryInitializationAotProcessor implements BeanFactoryInitiali
 		classesForReflection.addAll(loggers);
 		classesForReflection.addAll(collections);
 		classesForReflection.addAll(pageHelpers);
+//		classesForReflection.add(RpcClientTlsConfig.class);
+//		classesForReflection.add(TlsConfig.class);
+
 		classesForReflection.addAll(Set.of(Serializable.class, SpringBootVFS.class, PerpetualCache.class, Cursor.class,
 				Optional.class, LruCache.class, MethodHandles.class, Date.class, HashMap.class, CacheRefResolver.class,
 				XNode.class, ResultFlag.class, ResultMapResolver.class, MapperScannerConfigurer.class,
@@ -198,6 +203,7 @@ class GlobalBeanFactoryInitializationAotProcessor implements BeanFactoryInitiali
 		}
 		//pageHelper
 		hints.proxies().registerJdkProxy(org.apache.ibatis.executor.Executor.class);
+//		hints.serialization().registerType(TypeReference.of(com.alibaba.nacos.common.remote.client.RpcClientTlsConfig.class));
 
 	}
 

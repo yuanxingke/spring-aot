@@ -49,7 +49,9 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
-            <version>3.0.5-SNAPSHOT</version>
+            <version>3.0.4</version>
+<!--            <version>3.0.5-SNAPSHOT</version>-->
+
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -71,6 +73,12 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>2.1.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis-spring-boot-starter</artifactId>
+                    <groupId>org.mybatis.spring.boot</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -81,6 +89,33 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>nacos-config-spring-boot-starter</artifactId>
+            <version>0.3.0-RC</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.alibaba.nacos</groupId>
+                    <artifactId>nacos-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>logback-adapter</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>2.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>logback-adapter</artifactId>
+                    <groupId>com.alibaba.nacos</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -114,11 +149,15 @@
                         <arg>-march=native</arg>
                         <arg>-Ob</arg>
                         <arg>-H:+BuildReport</arg>
+<!--                        <arg>&#45;&#45;enable-monitoring=jfr</arg>-->
+                        <arg>--enable-monitoring=jmxserver,jmxclient,heapdump,jfr,jvmstat</arg>
 <!--                        <arg>-R:MaxHeapSize=4000M</arg>-->
-                        <arg>--gc=epsilon</arg>
-                        <arg>--initialize-at-run-time=sun.net.dns.ResolverConfigurationImpl</arg>
+                <!--         <arg>&#45;&#45;expert-options-all</arg>-->
+                         <arg>--gc=G1</arg>
+<!--                        <arg>&#45;&#45;initialize-at-run-time=sun.net.dns.ResolverConfigurationImpl</arg>-->
+<!--                        <arg>&#45;&#45;enable-url-protocols=http</arg>-->
                         <arg>--report-unsupported-elements-at-runtime</arg>
-                        <arg>-H:JNIConfigurationFiles=src/main/resources/META-INF/native-image/jni.json</arg>
+<!--                        <arg>-H:JNIConfigurationFiles=src/main/resources/META-INF/native-image/jni.json</arg>-->
 <!--                        <arg>-H:DynamicProxyConfigurationResources=META-INF/native-image/proxy.json</arg>-->
                     </buildArgs>
                 </configuration>
@@ -127,10 +166,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <jvmArguments>
-                        -agentlib:native-image-agent=config-output-dir=target/native-image
-                    </jvmArguments>
-                    <!--....-->
+<!--                    <goal>run</goal>-->
+<!--                    <jvmArguments>-->
+<!--                        -agentlib:native-image-agent=config-merge-dir=d:/target/native-image,config-write-period-secs=20,config-write-initial-delay-secs=1-->
+<!--                        -Dserver.port=8080-->
+<!--                        -Dspring.aot.enabled=true-->
+<!--                        -Dorg.graalvm.nativeimage.imagecode=runtime-->
+<!--                        -Dspring.main.allow-bean-definition-overriding=true-->
+<!--                    </jvmArguments>-->
                 </configuration>
             </plugin>
         </plugins>
